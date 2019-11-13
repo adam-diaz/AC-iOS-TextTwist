@@ -73,10 +73,14 @@ extension ViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
        
-        var arr: [String] = []
+        var arr: [Character] = Array(scrambleWord.text ?? "" )
         
-        for char in scrambleWord.text! {
-            arr.append(String(char))
+        for (index, char) in arr.enumerated() {
+            if char == Character(string) {
+                arr.remove(at: index)
+                scrambleWord.text = String(arr)
+            }
+                
         }
         
         
