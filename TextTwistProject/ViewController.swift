@@ -25,15 +25,21 @@ class ViewController: UIViewController {
     }
     
     func checkUserGuess() {
-        var userWord = userInput.text ?? ""
+        let userWord = userInput.text ?? ""
         
         if userWord == scrambleWord.text! {
             view.backgroundColor = .green
         }
 }
+    
+    
 
-
-
+    @IBAction func nextWordPressed(_ sender: UIButton) {
+       
+        scrambleWord.text = brain.getRandomWord().scrambled
+        
+    }
+    
 }
 
 extension ViewController: UITextFieldDelegate {
