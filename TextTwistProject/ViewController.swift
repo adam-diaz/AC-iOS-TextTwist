@@ -21,24 +21,32 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         userInput.delegate = self
         scrambleWord.text = brain.getRandomWord().scrambled
-        
+        checkUserGuess()
     }
     
     func checkUserGuess() {
         let userWord = userInput.text ?? ""
-        
-        if userWord == scrambleWord.text! {
+        if userWord.sorted() == scrambleWord.text!.sorted() {
+            print("correct")
             view.backgroundColor = .green
         }
 }
     
     
+    
+    @IBAction func userInputPressed(_ sender: UITextField) {
+        checkUserGuess()
+    }
+    
 
     @IBAction func nextWordPressed(_ sender: UIButton) {
        
         scrambleWord.text = brain.getRandomWord().scrambled
+        view.backgroundColor = .white
         
     }
+    
+    
     
 }
 
