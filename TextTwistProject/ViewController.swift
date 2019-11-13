@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var userInput: UITextField!
     @IBOutlet weak var nextWord: UIButton!
     
+    
+    
     var brain = Word.self
     
     override func viewDidLoad() {
@@ -70,9 +72,21 @@ extension ViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
+       
+        var arr: [String] = []
+        
+        for char in scrambleWord.text! {
+            arr.append(String(char))
+        }
+        
+        
             if let oldString = textField.text {
-            let newString = oldString.replacingCharacters(in: Range(range, in: oldString)!,with: "")
-            // ...
+           
+                let newString = oldString.replacingCharacters(in: Range(range, in: oldString)!,with: string)
+                print(newString)
+                if scrambleWord.text == newString {
+//                    scrambleWord.
+                }
         }
         return true
     }
