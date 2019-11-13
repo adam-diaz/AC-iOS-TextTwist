@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         userInput.delegate = self
         scrambleWord.text = brain.getRandomWord().scrambled
-        checkUserGuess()
+        nextWord.isHidden = true
     }
     
     func checkUserGuess() {
@@ -29,18 +29,26 @@ class ViewController: UIViewController {
         if userWord.sorted() == scrambleWord.text!.sorted() {
             print("correct")
             view.backgroundColor = .green
+            nextWord.isHidden = false
+        } else {
+            view.backgroundColor = .red
         }
-}
+    }
+    
+    
+
     
     
     
     @IBAction func userInputPressed(_ sender: UITextField) {
         checkUserGuess()
-    }
-    
-
-    @IBAction func nextWordPressed(_ sender: UIButton) {
        
+        }
+    
+    
+    @IBAction func nextWordPressed(_ sender: UIButton) {
+        
+        nextWord.isHidden = true
         scrambleWord.text = brain.getRandomWord().scrambled
         view.backgroundColor = .white
         
@@ -56,6 +64,16 @@ extension ViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         checkUserGuess()
         textField.text = nil
+        return true
+    }
+    
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+            if let oldString = textField.text {
+            let newString = oldString.replacingCharacters(in: Range(range, in: oldString)!,with: "")
+            // ...
+        }
         return true
     }
 }
