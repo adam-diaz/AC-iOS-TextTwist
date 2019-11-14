@@ -33,6 +33,7 @@ class ViewController: UIViewController {
             view.backgroundColor = .green
             nextWord.isHidden = false
         } else {
+            nextWord.isHidden = false
             view.backgroundColor = .red
         }
     }
@@ -73,12 +74,12 @@ extension ViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
        
-        var arr: [Character] = Array(scrambleWord.text ?? "" )
+        var newArr: [Character] = Array(scrambleWord.text ?? "" )
         
-        for (index, char) in arr.enumerated() {
+        for (index, char) in newArr.enumerated() {
             if char == Character(string) {
-                arr.remove(at: index)
-                scrambleWord.text = String(arr)
+                newArr.remove(at: index)
+                scrambleWord.text = String(newArr)
             }
                 
         }
